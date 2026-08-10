@@ -1,4 +1,4 @@
-import { CommonModule, NgOptimizedImage } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { PokemonTypeComponent } from "../pokemon-type/pokemon-type.component";
 
@@ -10,7 +10,7 @@ import { PokemonTypeComponent } from "../pokemon-type/pokemon-type.component";
   styleUrl: './pokemon-card.component.scss'
 })
 export class PokemonCardComponent {
-@Input() label!: string;
+  @Input() label!: string;
   @Input() tipo: string[] = [];
   @Input() number!: string;
   @Input() src!: string;
@@ -37,8 +37,8 @@ export class PokemonCardComponent {
   };
 
   get primaryColor(): string {
-    if (!this.tipo || this.tipo.length === 0) return '#7AC74C'; // verde padrão se não houver tipo
-    const mainType = this.tipo[0].toLowerCase().trim();
-    return this.typeColors[mainType] || '#7AC74C';
+    if (!this.tipo || this.tipo.length === 0) return '#6c5ce7';
+    const mainType = String(this.tipo[0]).toLowerCase().trim();
+    return this.typeColors[mainType] || '#6c5ce7';
   }
 }

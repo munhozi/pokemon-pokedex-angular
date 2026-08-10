@@ -1,20 +1,148 @@
+.header-bar {
+  // Cor de destaque padrão (quando nenhum tipo é selecionado)
+  --accent-color: #6c5ce7;
 
-.search-container {
+  background: #1a162b;
+  padding: 16px;
+  border-radius: 16px;
+  margin-bottom: 24px;
+  border: 1px solid color-mix(in srgb, var(--accent-color) 30%, transparent);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--accent-color) 15%, transparent);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+
+  // --- Mapeamento de Cores para o Tipo Selecionado ---
+  &.normal { --accent-color: #A8A77A; }
+  &.fire { --accent-color: #EE8130; }
+  &.water { --accent-color: #6390f0; }
+  &.electric { --accent-color: #F7D02C; }
+  &.grass { --accent-color: #7AC7DC; }
+  &.ice { --accent-color: #96D9D6; }
+  &.fighting { --accent-color: #C22E28; }
+  &.poison { --accent-color: #A33EA1; }
+  &.ground { --accent-color: #E2BF65; }
+  &.flying { --accent-color: #A98FF3; }
+  &.psychic { --accent-color: #F95587; }
+  &.bug { --accent-color: #A6B91A; }
+  &.rock { --accent-color: #B6A136; }
+  &.ghost { --accent-color: #735797; }
+  &.dragon { --accent-color: #6F35FC; }
+  &.dark { --accent-color: #705746; }
+  &.steel { --accent-color: #B7B7CE; }
+}
+
+/* --- LETREIRO EM MOVIMENTO --- */
+.type-marquee {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 16px;
+  position: relative;
+
+  // Efeito de esmaecimento nas bordas
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    width: 30px;
+    height: 100%;
+    z-index: 2;
+  }
+  &::before { left: 0; background: linear-gradient(to right, #1a162b, transparent); }
+  &::after { right: 0; background: linear-gradient(to left, #1a162b, transparent); }
+
+  .marquee-track {
     display: flex;
     gap: 10px;
-    margin-bottom: 20px;
+    width: max-content;
+    animation: slideMarquee 25s linear infinite;
 
-    input, select {
-        padding: 8px;
-        border-radius: 8px;
-        border: none;
-        background: #0f0c1b;
-        color: rgb(247, 232, 232);
-       
+    &:hover {
+      animation-play-state: paused; // Pausa ao passar o mouse
+    }
+  }
+
+  .marquee-badge {
+    font-size: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: #fff;
+    white-space: nowrap;
+
+    // Cores específicas dos badges no letreiro
+    &.normal { background: #A8A77A; }
+    &.fire { background: #EE8130; }
+    &.water { background: #6390f0; }
+    &.electric { background: #F7D02C; color: #000; }
+    &.grass { background: #7AC7DC; }
+    &.ice { background: #96D9D6; color: #000; }
+    &.fighting { background: #C22E28; }
+    &.poison { background: #A33EA1; }
+    &.ground { background: #E2BF65; }
+    &.flying { background: #A98FF3; }
+    &.psychic { background: #F95587; }
+    &.bug { background: #A6B91A; }
+    &.rock { background: #B6A136; }
+    &.ghost { background: #735797; }
+    &.dragon { background: #6F35FC; }
+    &.dark { background: #705746; }
+    &.steel { background: #B7B7CE; }
+  }
+}
+
+@keyframes slideMarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* --- CAMPO DE BUSCA E SELECT --- */
+.search-container {
+  display: flex;
+  gap: 12px;
+
+  .input-wrapper {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+
+    .search-icon {
+      position: absolute;
+      left: 12px;
+      width: 18px;
+      height: 18px;
+      stroke: #8b85a1;
+      transition: stroke 0.3s ease;
     }
 
     input {
-        flex: auto;
+      width: 100%;
+      padding: 10px 12px 10px 40px;
     }
+  }
 
+  input, select {
+    border-radius: 8px;
+    border: 1px solid #2a2440;
+    background: #0f0c1b;
+    color: #f7e8e8;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+    &:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color) 30%, transparent);
+    }
+  }
+
+  .input-wrapper:focus-within .search-icon {
+    stroke: var(--accent-color);
+  }
+
+  select {
+    padding: 10px 16px;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
 }

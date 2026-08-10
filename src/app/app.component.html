@@ -3,25 +3,6 @@
 <div class="header-actions">
   <app-button-pesquisar></app-button-pesquisar>
 
-  <!-- Botões de alternância -->
-  <div class="view-toggle">
-    <button 
-      [class.active]="viewMode === 'grid'" 
-      (click)="setViewMode('grid')">
-      Grade
-    </button>
-    <button 
-      [class.active]="viewMode === 'list'" 
-      (click)="setViewMode('list')">
-      Lista
-    </button>
-  </div>
-</div>
-
-<hr>
-
-<!-- Passa os dados e a propriedade viewMode para o componente de lista -->
 <app-pokemon-list 
-  [pokemonListaCompleta]="pokemonListaCompleta" 
-  [viewMode]="viewMode">
+  [pokemonListaCompleta]="pokemonListaCompleta">
 </app-pokemon-list>

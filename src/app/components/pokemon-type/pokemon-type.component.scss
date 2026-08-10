@@ -1,5 +1,11 @@
-.badge{
-    padding: 5px 15px;
-    border-radius: 40px;
-    font-family: 'Amika', sans-serif;
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 40px;
+  font-family: 'Amiko', sans-serif;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  text-transform: capitalize; // Garante que fique bonitinho na tela (ex: "Fire")
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }

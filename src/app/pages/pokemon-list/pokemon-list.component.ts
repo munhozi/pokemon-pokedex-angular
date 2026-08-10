@@ -1,8 +1,7 @@
-import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { PokemonCardComponent } from '../../components/pokemon-card/pokemon-card.component';
 import { Pokemon } from '../../interface/pokemon';
-import { PokemonCardComponent } from "../../components/pokemon-card/pokemon-card.component";
-
 
 @Component({
   selector: 'app-pokemon-list',
@@ -12,5 +11,5 @@ import { PokemonCardComponent } from "../../components/pokemon-card/pokemon-card
   styleUrl: './pokemon-list.component.scss'
 })
 export class PokemonListComponent {
-  @Input() pokemonListaCompleta : Pokemon[] = [];
+  @Input() pokemonListaCompleta: Pokemon[] = [];
 }

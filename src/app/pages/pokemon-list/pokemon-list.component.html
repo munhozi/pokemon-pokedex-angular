@@ -1,5 +1,11 @@
-<div class="pokemon-list">
-    <div *ngFor="let pokemon of pokemonListaCompleta">
-        <app-pokemon-card [label]="pokemon.name" [src]="pokemon.sprites.front_default" [tipo]="[]" [number]="pokemon.id.toString()"></app-pokemon-card>
+<div class="row">
+    <div class="pokemon-list">
+        <div *ngFor="let pokemon of pokemonListaCompleta">
+            <app-pokemon-card 
+            [label]="pokemon.name" 
+            [src]="pokemon.sprites.front_default" 
+[tipo]="$any(pokemon).tipo"            [number]="pokemon.id.toString()">
+            </app-pokemon-card>
+        </div>
     </div>
 </div>
