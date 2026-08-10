@@ -1,0 +1,22 @@
+<div class="cards-container">
+<button class="card-pokemon">
+    <div class="imagem" [ngStyle]="{ 'background-color': typeColors[tipo[0]]}">
+        <img [src]="src" />
+    </div>
+
+<div class="card-text-content">
+    <div class="info">
+        <h3 class="nome">{{ label }}</h3>
+        <div>
+            <app-pokemon-type *ngFor="let type1 of tipo" [type]="type1"></app-pokemon-type>
+        </div>
+    </div>
+</div>
+    
+
+    <div class="numero">
+        <p class="Number">No: {{ number }}</p>
+    </div>
+</button>
+
+</div>

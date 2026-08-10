@@ -1,1 +1,23 @@
-/* You can add global styles to this file, and also import other style files */
+.hr {
+    width: 100%;
+    height: 100%;
+    border-width: 1px;
+    border: 1px solid rgb(53, 55, 56);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  background-color: #000;
+  background-image: radial-gradient(ellipse 200px 400px at center, #7e1919, #000000);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  overflow-x: hidden;
+
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Amiko:wght@400;600;700&display=swap');

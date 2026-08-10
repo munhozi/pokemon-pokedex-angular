@@ -1,0 +1,20 @@
+
+.search-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+
+    input, select {
+        padding: 8px;
+        border-radius: 8px;
+        border: none;
+        background: #0f0c1b;
+        color: rgb(247, 232, 232);
+       
+    }
+
+    input {
+        flex: auto;
+    }
+
+}

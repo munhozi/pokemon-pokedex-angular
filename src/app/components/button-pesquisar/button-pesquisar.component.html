@@ -1,0 +1,18 @@
+
+<header class="header-bar">
+<div class="search-container">
+    <input type="text" placeholder="Search..." [ngModel]="searchTerm"/>
+    <select [ngModel]="selectedType">
+       <option value="selectedType">Type</option>
+       <option value="selectedType">All</option>
+       <option value="fire">Fire</option>
+       <option value="water">Water</option>
+       <option value="electric">Eletric</option>
+       <option value="grass">Grass</option>
+    </select>
+</div>
+</header>
+
+<div *ngFor="let pokemon of  filteredPokemons">
+    <p>{{ pokemon.name }}</p>
+</div>
