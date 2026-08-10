@@ -19,6 +19,8 @@ export class AppComponent implements OnInit {
   title = 'App-Pokedex';
   searchTerm: string = '';
 
+  public viewMode: 'grid' | 'list' = 'grid';
+
   public pokemonList: ListaSimples[] = [];
   public pokemonListaCompleta: Pokemon[] = [];
 
@@ -30,16 +32,28 @@ export class AppComponent implements OnInit {
     await this.loadPokemons();
   }
 
-  async loadPokemons(): Promise<void> {
+  setViewMode(mode: 'grid' | 'list'): void {
+    this.viewMode = mode;
+  }
+
+
+ async loadPokemons(): Promise<void> {
     try {
-      const data = await this.httpService.get<ListaSimples>('pokemon?limit=2000');
+      const data = await this.httpService.get<any>('pokemon?limit=2000');
       const basicList = data.results;
 
-      basicList.forEach(async (p: any) => {
-        const details = await this.httpService.get<Pokemon>(`pokemon/${p.name}`);
-        this.pokemonListaCompleta.push(details)
-       
-      })
+      // Usando Promise.all para carregar em lote ordenado
+      const requests = basicList.slice(0, 50).map((p: any) => 
+        this.httpService.get<any>(`pokemon/${p.name}`)
+      );
+
+      const detailsList = await Promise.all(requests);
+
+      // Mapeamos para garantir que o tipo seja um array de strings simples: ['grass', 'poison']
+      this.pokemonListaCompleta = detailsList.map((details: any) => ({
+        ...details,
+        tipo: details.types ? details.types.map((t: any) => t.type.name) : []
+      }));
 
     } catch (error) {
       console.error('Erro ao carregar Pokémons:', error);

@@ -1,7 +1,27 @@
 <router-outlet />
 
-<app-button-pesquisar></app-button-pesquisar>
+<div class="header-actions">
+  <app-button-pesquisar></app-button-pesquisar>
+
+  <!-- Botões de alternância -->
+  <div class="view-toggle">
+    <button 
+      [class.active]="viewMode === 'grid'" 
+      (click)="setViewMode('grid')">
+      Grade
+    </button>
+    <button 
+      [class.active]="viewMode === 'list'" 
+      (click)="setViewMode('list')">
+      Lista
+    </button>
+  </div>
+</div>
+
 <hr>
 
-
-<app-pokemon-list [pokemonListaCompleta]="pokemonListaCompleta"></app-pokemon-list>
+<!-- Passa os dados e a propriedade viewMode para o componente de lista -->
+<app-pokemon-list 
+  [pokemonListaCompleta]="pokemonListaCompleta" 
+  [viewMode]="viewMode">
+</app-pokemon-list>
