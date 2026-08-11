@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 interface Pokemon {
   name: string;
   type: string;
-  tipo?: string[]; // <--- Adicione esta linha
+  tipo?: string[]; 
 }
 
 @Component({
@@ -18,6 +18,8 @@ interface Pokemon {
 export class ButtonPesquisarComponent {
   searchTerm: string = '';
   selectedType: string = '';
+   @Input() viewMode: 'grid' | 'list' = 'grid';
+  @Output() viewModeChange = new EventEmitter<'grid' | 'list'>();
 
   pokemons: Pokemon[] = [
     { name: 'Normal', type: 'normal' },
@@ -39,6 +41,11 @@ export class ButtonPesquisarComponent {
     { name: 'Steel', type: 'steel' },
 
   ];
+
+  changeView(mode: 'grid' | 'list') {
+    this.viewMode = mode;
+    this.viewModeChange.emit(mode);
+  }
 
   get filteredPokemons(): Pokemon[] {
     return this.pokemons.filter(pokemon => {

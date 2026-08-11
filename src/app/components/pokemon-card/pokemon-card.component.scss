@@ -3,12 +3,12 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
-  padding: 20px;
+  padding: 2px;
 }
 
 .card-pokemon {
   all: unset;
-  --card-color: #6c5ce7; // Valor de fallback inicial
+  --card-color: #6c5ce7; 
 
   position: relative;
   display: flex;

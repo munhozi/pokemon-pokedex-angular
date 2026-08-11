@@ -6,3 +6,10 @@
 <app-pokemon-list 
   [pokemonListaCompleta]="pokemonListaCompleta">
 </app-pokemon-list>
+
+<app-button-pesquisar [(viewMode)]="viewMode"></app-button-pesquisar>
+
+<app-pokemon-list 
+  [pokemonListaCompleta]="pokemonListaCompleta"
+  [viewMode]="viewMode">
+</app-pokemon-list>

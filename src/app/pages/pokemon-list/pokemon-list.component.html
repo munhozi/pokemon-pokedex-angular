@@ -1,11 +1,14 @@
 <div class="row">
-    <div class="pokemon-list">
+    <div class="cards-container" [ngClass]="viewMode">
         <div *ngFor="let pokemon of pokemonListaCompleta">
             <app-pokemon-card 
             [label]="pokemon.name" 
             [src]="pokemon.sprites.front_default" 
-[tipo]="$any(pokemon).tipo"            [number]="pokemon.id.toString()">
+            [tipo]="$any(pokemon).tipo"
+            [number]="pokemon.id.toString()"
+            [src]="(pokemon.sprites?.other?.['official-artwork']?.front_default || pokemon.sprites?.front_default) || ''"
+            [viewMode]="viewMode">
             </app-pokemon-card>
         </div>
-    </div>
+    </div>    
 </div>

@@ -12,4 +12,5 @@ import { Pokemon } from '../../interface/pokemon';
 })
 export class PokemonListComponent {
   @Input() pokemonListaCompleta: Pokemon[] = [];
+  @Input() viewMode: 'grid' | 'list' = 'grid';
 }

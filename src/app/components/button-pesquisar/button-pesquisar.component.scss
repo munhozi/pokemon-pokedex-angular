@@ -51,7 +51,8 @@
 
   .marquee-track {
     display: flex;
-    gap: 10px;
+    gap: 4px;
+    padding: 8px;
     width: max-content;
     animation: slideMarquee 25s linear infinite;
 
@@ -144,5 +145,36 @@
     padding: 10px 16px;
     cursor: pointer;
     text-transform: capitalize;
+  }
+}
+
+.view-toggle {
+  display: flex;
+  background: #0f0c1b;
+  border: 1px solid #2a2440;
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+
+  button {
+    background: transparent;
+    border: none;
+    color: #8b85a1;
+    padding: 8px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.active {
+      background: var(--accent-color, #6c5ce7);
+      color: #fff;
+    }
   }
 }

@@ -14,6 +14,9 @@ export class PokemonCardComponent {
   @Input() tipo: string[] = [];
   @Input() number!: string;
   @Input() src!: string;
+  
+  // ADICIONE ESTA LINHA:
+  @Input() viewMode: 'grid' | 'list' = 'grid';
 
   typeColors: Record<string, string> = {
     normal: '#A8A77A',

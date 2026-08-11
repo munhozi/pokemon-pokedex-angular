@@ -7,7 +7,6 @@ import { Pokemon } from './interface/pokemon';
 import { ListaSimples } from './interface/lista_simples';
 import { PokemonListComponent } from "./pages/pokemon-list/pokemon-list.component";
 
-
 @Component({
   selector: 'app-root',
   standalone: true,
@@ -36,20 +35,20 @@ export class AppComponent implements OnInit {
     this.viewMode = mode;
   }
 
-
- async loadPokemons(): Promise<void> {
+  async loadPokemons(): Promise<void> {
     try {
-      const data = await this.httpService.get<any>('pokemon?limit=2000');
+      // 1. Busca a lista inicial de Pokémon
+      const data = await this.httpService.get<any>('pokemon?limit=151');
       const basicList = data.results;
 
-      // Usando Promise.all para carregar em lote ordenado
+      // 2. Dispara as requisições em paralelo (ex: os primeiros 50)
       const requests = basicList.slice(0, 50).map((p: any) => 
         this.httpService.get<any>(`pokemon/${p.name}`)
       );
 
       const detailsList = await Promise.all(requests);
 
-      // Mapeamos para garantir que o tipo seja um array de strings simples: ['grass', 'poison']
+      // 3. Mapeia TODOS os itens tratando a propriedade 'tipo'
       this.pokemonListaCompleta = detailsList.map((details: any) => ({
         ...details,
         tipo: details.types ? details.types.map((t: any) => t.type.name) : []
